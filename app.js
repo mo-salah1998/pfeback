@@ -11,9 +11,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var clientRouter = require('./routes/client');
+var orderRouter = require('./routes/order');
 var app = express();
 //data base connexion
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true , useUnifiedTopology: true })
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true , useUnifiedTopology: true,useCreateIndex: true })
 const db = mongoose.connection
 
 db.on('error', (error) => console.log(error))
@@ -33,6 +34,7 @@ app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/client', clientRouter);
+app.use('/api/order', orderRouter);
 
 
 // catch 404 and forward to error handler

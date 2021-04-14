@@ -19,7 +19,6 @@ const partnerSchema = new mongoose.Schema({
             targetPosition: { lng: { type: Number }, lat: { type: Number } }
         }
 
-
     }], //updated field
     owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     managers: [
