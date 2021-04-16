@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var clientRouter = require('./routes/client');
 var orderRouter = require('./routes/order');
+var partnerRouter = require('./routes/partner');
 var app = express();
 //data base connexion
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true , useUnifiedTopology: true,useCreateIndex: true })
@@ -35,6 +36,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/client', clientRouter);
 app.use('/api/order', orderRouter);
+app.use('/api/partner', partnerRouter);
 
 
 // catch 404 and forward to error handler
