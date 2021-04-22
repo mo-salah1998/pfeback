@@ -14,6 +14,7 @@ var authRouter = require('./routes/auth');
 var clientRouter = require('./routes/client');
 var orderRouter = require('./routes/order');
 var partnerRouter = require('./routes/partner');
+var emailRouter = require('./routes/email');
 var app = express();
 swaggerJsdoc = require("swagger-jsdoc"),
     swaggerUi = require("swagger-ui-express");
@@ -74,6 +75,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/client', clientRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/partner', partnerRouter);
+app.use('/api/email', emailRouter);
 
 
 // catch 404 and forward to error handler

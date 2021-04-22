@@ -60,6 +60,53 @@ const PartnerCtrl = require('../controllers/partner');
  *                 $ref: '#'
  */
 
+/**
+ * @swagger
+ * /api/partner/{id}:
+ *   get:
+ *     summary: Get the partner by id
+ *     tags: [Partner]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The Partner id
+ *     responses:
+ *       200:
+ *         description: The Partner information by id
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#'
+ *       404:
+ *         description: The Partner was not found
+ */
+
+/**
+ * @swagger
+ * /api/partner/withtype:
+ *   get:
+ *     summary: Get the partner by category
+ *     tags: [Partner]
+ *     parameters:
+ *       - in: path
+ *         name: type
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: The Partner category
+ *     responses:
+ *       200:
+ *         description: The Partners by category
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#'
+ *       404:
+ *         description: The Partner was not found
+ */
 router.get('/',PartnerCtrl.getall);
 router.get('/withtype',PartnerCtrl.getallWithType);
 router.get('/:id',PartnerCtrl.getone);
