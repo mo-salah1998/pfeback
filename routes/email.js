@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const emailCtrl = require('../controllers/email');
 
-router.post('/', emailCtrl)
+router.post('/', emailCtrl.sendmail);
+router.get('/inbox', emailCtrl.inbox);
 /*
 router.post('/',(req, res) => {
     const { subject, email, text } = req.body;

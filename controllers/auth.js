@@ -49,7 +49,7 @@ exports.login = (req, res, next) => {
 
                     res.status(200).json({
                         userId: user._id,
-                        token
+                        token,
                     });
                 })
                 .catch(error => res.status(500).json({error}));
