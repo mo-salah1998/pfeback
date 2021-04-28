@@ -7,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 
+const Order = require('./models/Order');
+const Product = require('./models/Selling/Product');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +17,7 @@ var clientRouter = require('./routes/client');
 var orderRouter = require('./routes/order');
 var partnerRouter = require('./routes/partner');
 var emailRouter = require('./routes/email');
+var dashbordRouter = require('./routes/dashbord');
 var app = express();
 swaggerJsdoc = require("swagger-jsdoc"),
     swaggerUi = require("swagger-ui-express");
@@ -23,7 +26,32 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true , useUnifiedTo
 const db = mongoose.connection
 
 db.on('error', (error) => console.log(error))
-db.once('open', () => console.log('Connection to database opened'))
+db.once('open',async () => {
+  console.log('Connection to database opened')
+  //if(await Product.countDocuments().exec()>0)return;
+  //Promise.all([
+  //    Product.create({name: "productTest1",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest2",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest3",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest4",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest5",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest6",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest7",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest8",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest9",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //    Product.create({name: "productTest10",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
+  //   // Order.create({client:"6065a0453e0ff9325c1740ca",price:500,phone:"99404229",items[]})
+  //]).then(()=>console.log("produits ajouter"))
+  if(await Order.countDocuments().exec()>0)return;
+  Promise.all([
+      Order.create({client:"6065a0453e0ff9325c1740ca",price:500,phone:"99404229",items:[{product:"6089450011170564a3ee28e9",quantity:3},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+      Order.create({client:"6065a0453e0ff9325c1740ca",price:300,phone:"98404229",items:[{product:"6089450011170564a3ee28e9",quantity:1},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+      Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+      Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+      Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+      Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+      ]).then(()=>console.log("orders ajouter"))
+})
 // end data base connexion
 
 //swagger ui
@@ -76,6 +104,7 @@ app.use('/api/client', clientRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/partner', partnerRouter);
 app.use('/api/email', emailRouter);
+app.use('/api/dashbord', dashbordRouter);
 
 
 // catch 404 and forward to error handler
