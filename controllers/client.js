@@ -7,7 +7,7 @@ exports.getall = async (req, res, next) => {
     try {
         // a discuter avec ahmed is partner isVandor ?? et meme sort
 
-        const {page = 1, limit = 10} = req.query;
+        const {page = 1, limit = 300} = req.query;
         const isVendor = false;
         const isPartner = true;
         const total = await User.countDocuments({isPartner, isVendor});
@@ -41,7 +41,7 @@ exports.getall = async (req, res, next) => {
 exports.getone = async (req, res, next) => {
     try {
         const id = req.params.id;
-        user = await User.findById(id, {firstName: 1, lastName: 1, email: 1, phone: 1, location: 1})
+        user = await User.findById(id, {firstName: 1, lastName: 1, email: 1, phone: 1})
         if (user == null) {
             return res.status(404).json({message: 'Cannot find user'})
         }

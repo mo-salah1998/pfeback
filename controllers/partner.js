@@ -4,14 +4,20 @@ const Domain = require('../models/Trading/Domain');
 
 exports.getall = async (req, res, next) => {
     try {
-        const {page = 1, limit = 50} = req.query;
+        const {page = 1, limit = 200} = req.query;
         const total = await Partner.countDocuments();
         const endIndex = (total / limit) + 1;
         const partners = await Partner.find({}, {
             partnerName: 1,
             rating: 1,
-            domain: 1
+            domain: 1,
+            owner :1 ,
+            phone : 1 ,
+            email : 1,
+            joined :1 ,
+
         })
+            .populate('owner domain owner')
             .limit(limit * 1)
             .skip((page - 1) * limit);
 
@@ -29,14 +35,14 @@ exports.getall = async (req, res, next) => {
 exports.getallWithType = async (req, res, next) => {
     try {
 
-        const {page = 1, limit = 10, type = ""} = req.query;
+        const {page = 1, limit = 100, type = ""} = req.query;
         const domaintype = await Domain.find({type}, {id: 1})
         const total = await Domain.countDocuments({type});
         const endIndex = (total / limit) + 1;
 
         const partners = await Partner.find({domain: domaintype})
-            .select("partnerName rating domain ")
-            .populate('domain')
+            .select("partnerName rating domain owner phone email joined")
+            .populate('owner domain owner')
             .limit(limit * 1)
             .skip((page - 1) * limit);
 

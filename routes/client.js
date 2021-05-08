@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middlewares/authentificationMdw');
 //const advancedResults = require('../middlewares/resultatAvancerUser');
 //const Client = require('../models/User');
 const clientCtrl = require('../controllers/client');
@@ -63,7 +64,7 @@ const clientCtrl = require('../controllers/client');
  */
 
 
-router.get('/',clientCtrl.getall);
+router.get('/',auth,clientCtrl.getall);
 
 /**
  * @swagger
@@ -88,6 +89,7 @@ router.get('/',clientCtrl.getall);
  *       404:
  *         description: The client was not found
  */
+
 router.get('/:id',clientCtrl.getone);
 
 module.exports = router;

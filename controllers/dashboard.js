@@ -8,13 +8,16 @@ exports.dashbord = async (req,res,next) => {
         const totalPartenaires = await Partner.countDocuments();
         const totalOrders = await Order.countDocuments();
         res.status(200).json({
-            nbTelechargement : 500000,
-            nbTelechargementparJour : 7000 ,
+            nbTelechargement : "3.580",
+            nbTelechargementparJour : 100 ,
             totalPartenaires: totalPartenaires,
             totalOrders:totalOrders,
-            fbPageLikes:78000,
-            instagrameFollowrs:45000,
-            email:50,
+            fbPageLikes:"4324",
+            fbPageabonner:"4212",
+            instagrameFollowrs:"781",
+            instagramePublications:"56",
+            emailNonLus:50,
+            emailresponce:9,
         })
     } catch (err) {
         res.status(500).json({message: err.message})
