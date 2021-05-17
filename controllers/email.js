@@ -33,7 +33,6 @@ exports.sendmail = async (req,res,next) => {
             to: req.body.to,
             subject: req.body.subject,
             text: req.body.text,
-            //html: '<h1>Hello from gmail email using API</h1>',
         };
 
         const result = await transport.sendMail(mailOptions);
