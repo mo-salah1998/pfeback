@@ -8,7 +8,7 @@ exports.statistique = async (req, res, next) => {
     const total = await User.countDocuments({isPartner, isVendor});
     res.status(200).json({
         TotalClient : total,
-        newClient: 122 ,
+        newClient: 19 ,
         nbProduitVendue : 1238,
         nbProduitMoyPanier: 3.26,
         avgTime : "08 min 43 s",

@@ -8,8 +8,8 @@ exports.dashbord = async (req,res,next) => {
         const totalPartenaires = await Partner.countDocuments();
         const totalOrders = await Order.countDocuments();
         res.status(200).json({
-            nbTelechargement : "3.580",
-            nbTelechargementparJour : 100 ,
+            nbTelechargement : 3580,
+            nbTelechargementparJour : 42 ,
             totalPartenaires: totalPartenaires,
             totalOrders:totalOrders,
             fbPageLikes:"4324",

@@ -19,6 +19,7 @@ var partnerRouter = require('./routes/partner');
 var emailRouter = require('./routes/email');
 var dashbordRouter = require('./routes/dashbord');
 var statistiqueRoute = require('./routes/statistique');
+var gainsRoute = require('./routes/gains');
 var app = express();
 swaggerJsdoc = require("swagger-jsdoc"),
     swaggerUi = require("swagger-ui-express");
@@ -43,15 +44,148 @@ db.once('open',async () => {
   //    Product.create({name: "productTest10",basePrice:50,mainImage:"img.jpeg",description:"c'est une petit discription",shortDescription:"c'est une petit discription",date:4/28/2020}),
   //   // Order.create({client:"6065a0453e0ff9325c1740ca",price:500,phone:"99404229",items[]})
   //]).then(()=>console.log("produits ajouter"))
+//codition d'ajout des commande
   if(await Order.countDocuments().exec()>0)return;
-  Promise.all([
-      Order.create({client:"6065a0453e0ff9325c1740ca",price:500,phone:"99404229",items:[{product:"6089450011170564a3ee28e9",quantity:3},{product:"6089450011170564a3ee28ec",quantity:2}]}),
-      Order.create({client:"6065a0453e0ff9325c1740ca",price:300,phone:"98404229",items:[{product:"6089450011170564a3ee28e9",quantity:1},{product:"6089450011170564a3ee28ec",quantity:2}]}),
-      Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
-      Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
-      Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
-      Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
-      ]).then(()=>console.log("orders ajouter"))
+   for (let i = 0; i < 130; i += 1) {
+     if (i<25) {
+       let order = new Order({
+         client: "6065a0453e0ff9325c1740ca",
+         price: (Math.floor(Math.random() * 1000) + 1),
+         phone: "99404229",
+         partner: "6065a0453e0ff9325c1740d8",
+         items: [{
+           product: "6089450011170564a3ee28e9",
+           quantity: (Math.floor(Math.random() * 9) + 1)
+         },
+           {
+             product: "6089450011170564a3ee28ec",
+             quantity: (Math.floor(Math.random() * 9) + 1)
+           }]
+       })
+       order.save(function (err) {
+
+         if (err) return console.error(err);
+       });
+     }
+     if ((i < 50)&&(i>25)) {
+       let order = new Order({
+         client: "6065a0453e0ff9325c1740ca",
+         price: (Math.floor(Math.random() * 1000) + 1),
+         phone: "99404229",
+         partner: "6065a0453e0ff9325c1740d8",
+         taked:true,
+         items: [{
+           product: "6089450011170564a3ee28e9",
+           quantity: (Math.floor(Math.random() * 9) + 1)
+         },
+           {
+             product: "6089450011170564a3ee28ec",
+             quantity: (Math.floor(Math.random() * 9) + 1)
+           }]
+       })
+       order.save(function (err) {
+
+         if (err) return console.error(err);
+       });
+     }
+     if ((i < 75)&&(i>50)) {
+       let order = new Order({
+         client: "6065a0453e0ff9325c1740ca",
+         price: (Math.floor(Math.random() * 1000) + 1),
+         phone: "99404229",
+         partner: "6065a0453e0ff9325c1740d8",
+         prepared: true,
+         items: [{
+           product: "6089450011170564a3ee28e9",
+           quantity: (Math.floor(Math.random() * 9) + 1)
+         },
+           {
+             product: "6089450011170564a3ee28ec",
+             quantity: (Math.floor(Math.random() * 9) + 1)
+           }]
+       })
+       order.save(function (err) {
+
+         if (err) return console.error(err);
+       });
+
+     }
+     if ((i < 100)&&(i>75)) {
+       let order = new Order({
+         client: "6065a0453e0ff9325c1740ca",
+         price: (Math.floor(Math.random() * 1000) + 1),
+         phone: "99404229",
+         partner: "6065a0453e0ff9325c1740d8",
+         payed: true,
+         items: [{
+           product: "6089450011170564a3ee28e9",
+           quantity: (Math.floor(Math.random() * 9) + 1)
+         },
+           {
+             product: "6089450011170564a3ee28ec",
+             quantity: (Math.floor(Math.random() * 9) + 1)
+           }]
+       })
+       order.save(function (err) {
+
+         if (err) return console.error(err);
+       });
+
+     }
+     if ((i < 125)&&(i>100)) {
+       let order = new Order({
+         client: "6065a0453e0ff9325c1740ca",
+         price: (Math.floor(Math.random() * 1000) + 1),
+         phone: "99404229",
+         partner: "6065a0453e0ff9325c1740d8",
+         taked: true,
+         items: [{
+           product: "6089450011170564a3ee28e9",
+           quantity: (Math.floor(Math.random() * 9) + 1)
+         },
+           {
+             product: "6089450011170564a3ee28ec",
+             quantity: (Math.floor(Math.random() * 9) + 1)
+           }]
+       })
+       order.save(function (err) {
+
+         if (err) return console.error(err);
+       });
+
+     }
+     if ((i < 130)&&(i>125)) {
+       let order = new Order({
+         client: "6065a0453e0ff9325c1740ca",
+         price: (Math.floor(Math.random() * 1000) + 1),
+         phone: "99404229",
+         partner: "6065a0453e0ff9325c1740d8",
+         actif: false,
+         items: [{
+           product: "6089450011170564a3ee28e9",
+           quantity: (Math.floor(Math.random() * 9) + 1)
+         },
+           {
+             product: "6089450011170564a3ee28ec",
+             quantity: (Math.floor(Math.random() * 9) + 1)
+           }]
+       })
+       order.save(function (err) {
+
+         if (err) return console.error(err);
+       });
+
+     }
+  }
+  console.log("orders ajouter")
+    // Promise.all([
+    //   Order.create({client:"6065a0453e0ff9325c1740ca",price:500,phone:"99404229",items:[{product:"6089450011170564a3ee28e9",quantity:3},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+    //   Order.create({client:"6065a0453e0ff9325c1740ca",price:300,phone:"98404229",items:[{product:"6089450011170564a3ee28e9",quantity:1},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+    //   Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+    //   Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+    //   Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+    //   Order.create({client:"6065a0453e0ff9325c1740ca",price:200,phone:"98504229",items:[{product:"6089450011170564a3ee28e9",quantity:4},{product:"6089450011170564a3ee28ec",quantity:2}]}),
+    //   ]).then(()=>console.log("orders ajouter"))
 })
 // end data base connexion
 
@@ -107,6 +241,7 @@ app.use('/api/partner', partnerRouter);
 app.use('/api/email', emailRouter);
 app.use('/api/dashbord', dashbordRouter);
 app.use('/api/statistique', statistiqueRoute);
+app.use('/api/gains', gainsRoute);
 
 
 // catch 404 and forward to error handler
