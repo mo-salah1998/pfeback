@@ -5,7 +5,6 @@ exports.getall = async (req, res, next) => {
         const {page = 1, limit = 100} = req.query;
         const total = await Order.countDocuments();
         const endIndex = (total / limit) + 1;
-
         const orders = await Order.find({}, {
             client: 1, actif: 1, taked: 1, prepared: 1, passed: 1, payed: 1, price: 1, partner: 1, items: 1
         })
@@ -141,8 +140,12 @@ exports.Annuler = async (req, res, next) => {
     try {
         let order = await Order.findById(req.params.id);
         order.actif = false;
+        order.prepared=false;
+        order.taked =false ;
+
+
         const updatedOrder = await order.save();
-        res.status(200).json('update successfully')
+        res.status(200).json('order annuler')
     } catch (err) {
         return res.status(500).json({message: err.message})
     }

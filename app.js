@@ -19,6 +19,7 @@ var partnerRouter = require('./routes/partner');
 var emailRouter = require('./routes/email');
 var dashbordRouter = require('./routes/dashbord');
 var statistiqueRoute = require('./routes/statistique');
+var profileRoute = require('./routes/profile');
 var gainsRoute = require('./routes/gains');
 var app = express();
 swaggerJsdoc = require("swagger-jsdoc"),
@@ -242,6 +243,7 @@ app.use('/api/email', emailRouter);
 app.use('/api/dashbord', dashbordRouter);
 app.use('/api/statistique', statistiqueRoute);
 app.use('/api/gains', gainsRoute);
+app.use('/api/profile', profileRoute);
 
 
 // catch 404 and forward to error handler
