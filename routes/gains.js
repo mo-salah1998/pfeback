@@ -9,5 +9,7 @@ router.get('/food',gainsCtrl.getFoodGains);
 
 router.get('/service',gainsCtrl.getServiceGains);
 
+router.get('/all',gainsCtrl.allGains);
+
 
 module.exports = router;
